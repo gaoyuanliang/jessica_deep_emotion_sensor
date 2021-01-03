@@ -6,4 +6,7 @@
 >>> 
 >>> emotion_tagging(u"Ready for that nice, breezy, calm, sunshine weather. #Autumn")
 [{'tag': 'joy', 'confidence': 0.9989052}]
+>>> 
+>>> emotion_tagging(u"@leesyatt you are a cruel, cruel man. #therewillbeblood #revenge")
+[{'tag': 'anger', 'confidence': 1.0}]
 ```
