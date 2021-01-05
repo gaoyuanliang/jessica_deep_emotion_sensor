@@ -1,9 +1,8 @@
 ##########jessica_deep_emotion_sensor.py##########
-
 import numpy as np
-import tensorflow as tf
-from tensorflow.keras import *
-from tensorflow.keras.utils import *
+import keras
+from keras import *
+from keras.utils import *
 
 # Model constants.
 max_features = 20000
@@ -38,11 +37,11 @@ print(text_processing(u"Don't join @BTCare they put the phone down on you, talk 
 '''
 
 def texts_to_input(texts):
-	word_id_sequence = map(lambda x: tf.keras.preprocessing.text.one_hot(x, n=max_features), 
+	word_id_sequence = map(lambda x: keras.preprocessing.text.one_hot(x, n=max_features), 
 		texts)
 	word_id_sequence = list(word_id_sequence)
 	x = np.array(word_id_sequence)
-	x = tf.keras.preprocessing.sequence.pad_sequences(
+	x = keras.preprocessing.sequence.pad_sequences(
 		x, padding="post",
 		maxlen=sequence_length,
 	)
@@ -54,7 +53,7 @@ def emotion_tagger_model_building(
 	sequence_length = 100,
 	dropout_rate = 0.2):
 	# A integer input for vocab indices.
-	inputs = tf.keras.Input(shape=(sequence_length), dtype="int64")
+	inputs = keras.Input(shape=(sequence_length, ))
 	# Next, we add a layer to map those vocab indices into a space of dimensionality
 	# 'embedding_dim'.
 	x = layers.Embedding(max_features, embedding_dim)(inputs)
@@ -70,7 +69,7 @@ def emotion_tagger_model_building(
 	predictions = layers.Dense(2, 
 		activation="softmax",
 		 name="predictions")(x)
-	model = tf.keras.Model(inputs, predictions)
+	model = keras.Model(inputs, predictions)
 	model.compile(
 		loss="categorical_crossentropy", 
 		optimizer="adam", 
@@ -139,7 +138,7 @@ def emotion_scorer_model_building(
 	embedding_dim = 300,
 	sequence_length = 100):
 	# A integer input for vocab indices.
-	inputs = tf.keras.Input(shape=(sequence_length), dtype="int64")
+	inputs = keras.Input(shape=(sequence_length), dtype="int64")
 	# Next, we add a layer to map those vocab indices into a space of dimensionality
 	# 'embedding_dim'.
 	x = layers.Embedding(max_features, embedding_dim)(inputs)
@@ -155,7 +154,7 @@ def emotion_scorer_model_building(
 	predictions = layers.Dense(1, 
 		activation="sigmoid",
 		 name="predictions")(x)
-	model = tf.keras.Model(inputs, predictions)
+	model = keras.Model(inputs, predictions)
 	model.compile(
 		loss="mse", 
 		optimizer="adam", 

@@ -1,21 +1,21 @@
 ########jessica_emotion_tagger.py########
+
+import keras
 import numpy as np
-import tensorflow as tf
-from tensorflow import keras
-from tensorflow.keras import *
-from tensorflow.keras.utils import *
+from keras import *
+from keras.utils import *
+from keras.models import *
+from keras.initializers import *
 
-from jessica_deep_emotion_sensor import texts_to_input
+from jessica_deep_emotion_sensor import *
 
-fear_tagger = keras.models.load_model('fear_tagger.h5')
-sadness_tagger = keras.models.load_model('sadness_tagger.h5')
-joy_tagger = keras.models.load_model('joy_tagger.h5')
-anger_tagger = keras.models.load_model('anger_tagger.h5')
-
-tagger_models = {"fear": fear_tagger,
-"sadness": sadness_tagger,
-"joy": joy_tagger,
-"anger": anger_tagger}
+with CustomObjectScope({'GlorotUniform': glorot_uniform()}):
+	tagger_models = {
+	"fear": keras.models.load_model('/Downloads/fear_tagger.h5'),
+	"anger": keras.models.load_model('/Downloads/anger_tagger.h5'),
+	"sadness": keras.models.load_model('/Downloads/sadness_tagger.h5'),
+	"joy": keras.models.load_model('/Downloads/joy_tagger.h5'),
+	}
 
 def emotion_tagging(text):
 	x = texts_to_input([text])
@@ -29,4 +29,19 @@ def emotion_tagging(text):
 			output_tags.append({'tag':emotion, "confidence":confidence})
 	return output_tags
 
+'''
+from jessica_emotion_tagger import emotion_tagging
+
+emotion_tagging(u"All I want to do is watch some netflix but I am stuck here in class. #depressing")
+#[{'tag': 'sadness', 'confidence': 0.99995244}]
+
+emotion_tagging(u"Watching It Follows.  This is a super freaky movie.  #scary")
+#[{'tag': 'fear', 'confidence': 0.9999993}]
+
+emotion_tagging(u"Ready for that nice, breezy, calm, sunshine weather.🍂🍁 #Autumn")
+#[{'tag': 'joy', 'confidence': 0.9989052}]
+
+emotion_tagging(u"@leesyatt you are a cruel, cruel man. #therewillbeblood #revenge")
+#[{'tag': 'anger', 'confidence': 1.0}]
+'''
 ########jessica_emotion_tagger.py########
