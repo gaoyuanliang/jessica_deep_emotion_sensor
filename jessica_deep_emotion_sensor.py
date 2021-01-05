@@ -37,8 +37,6 @@ def text_processing(t):
 print(text_processing(u"Don't join @BTCare they put the phone down on you, talk over you and are rude. Taking money out of my acc willynilly! #fuming"))
 '''
 
-
-
 def texts_to_input(texts):
 	word_id_sequence = map(lambda x: tf.keras.preprocessing.text.one_hot(x, n=max_features), 
 		texts)
@@ -81,7 +79,9 @@ def emotion_tagger_model_building(
 
 def train_tagger(texts,
 	tags,
-	tagger_model_path,
+	tagger_model_path = None,
+	tagger_model_weight_path = None,
+	tagger_model_json_path = None,
 	epochs = 100,
 	validation_split=0.1,
 	dropout_rate = 0.2,
@@ -109,9 +109,30 @@ def train_tagger(texts,
 	tagger_model.fit(x, y, 
 		validation_split=validation_split, 
 		epochs=epochs)
-	tagger_model.save(tagger_model_path,
-		save_format='h5')
+	# serialize model to JSON
+	if tagger_model_json_path is not None:
+		model_json = tagger_model.to_json()
+		with open(tagger_model_json_path, 'w+') as json_file:
+			json_file.write(model_json)
+	# serialize weights to HDF5
+	if tagger_model_json_path is not None:
+		tagger_model.save_weights(tagger_model_weight_path)
+	if tagger_model_path is not None:\
+		tagger_model.save(tagger_model_path)
 	return tagger_model
+
+'''
+# later...
+
+# load json and create model
+json_file = open('model.json', 'r')
+loaded_model_json = json_file.read()
+json_file.close()
+loaded_model = model_from_json(loaded_model_json)
+# load weights into new model
+loaded_model.load_weights("model.h5")
+print("Loaded model from disk")
+'''
 
 def emotion_scorer_model_building(
 	max_features = 20000,
