@@ -1,5 +1,13 @@
 # jessica_deep_emotion_sensor
 
+```bash
+docker pull gaoyuanliang/jessica_deep_emotion_sensor:1.0.1
+
+docker run -it \
+-v /Users/liangyu/Downloads/:/Downloads/ \
+gaoyuanliang/jessica_deep_emotion_sensor:1.0.1
+```
+
 ```python
 >>> from jessica_emotion_tagger import emotion_tagging
 >>> 
