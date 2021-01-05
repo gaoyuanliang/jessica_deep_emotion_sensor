@@ -1,14 +1,29 @@
 ##########jessica_deep_emotion_sensor.py##########
-import numpy as np
+
+import os
 import keras
+import numpy
+import random
+import tensorflow
+
 from keras import *
 from keras.utils import *
+from keras.models import *
+from tensorflow import set_random_seed
+
+'''
+https://stackoverflow.com/questions/46119435/keras-lstm-why-different-results-with-same-model-same-weights
+'''
+
+random.seed(42)
+numpy.random.seed(42)
+set_random_seed(42)
+os.environ['PYTHONHASHSEED'] = '0'
 
 # Model constants.
 max_features = 20000
 embedding_dim = 300
 sequence_length = 100
-
 
 '''
 def text_processing(t):
@@ -40,7 +55,7 @@ def texts_to_input(texts):
 	word_id_sequence = map(lambda x: keras.preprocessing.text.one_hot(x, n=max_features), 
 		texts)
 	word_id_sequence = list(word_id_sequence)
-	x = np.array(word_id_sequence)
+	x = numpy.array(word_id_sequence)
 	x = keras.preprocessing.sequence.pad_sequences(
 		x, padding="post",
 		maxlen=sequence_length,
@@ -100,10 +115,10 @@ def train_tagger(texts,
 	'''
 	prepare the output
 	'''
-	y = np.array(tags)
+	y = numpy.array(tags)
 	y = to_categorical(y)
 	print(x.shape, y.shape)
-	print(np.sum(y, axis = 0))
+	print(numpy.sum(y, axis = 0))
 	# Fit the model using the train and test datasets.
 	tagger_model.fit(x, y, 
 		validation_split=validation_split, 
@@ -181,7 +196,7 @@ def train_scorer(texts,
 	'''
 	prepare the output
 	'''
-	y = np.array(scores)
+	y = numpy.array(scores)
 	print(x.shape, y.shape)
 	# Fit the model using the train and test datasets.
 	scorer_model.fit(x, y, 

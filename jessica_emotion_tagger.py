@@ -1,21 +1,19 @@
 ########jessica_emotion_tagger.py########
 
+import os
 import keras
-import numpy as np
-from keras import *
-from keras.utils import *
-from keras.models import *
-from keras.initializers import *
+import numpy
+import random
+import tensorflow
 
 from jessica_deep_emotion_sensor import *
 
-with CustomObjectScope({'GlorotUniform': glorot_uniform()}):
-	tagger_models = {
-	"fear": keras.models.load_model('/Downloads/fear_tagger.h5'),
-	"anger": keras.models.load_model('/Downloads/anger_tagger.h5'),
-	"sadness": keras.models.load_model('/Downloads/sadness_tagger.h5'),
-	"joy": keras.models.load_model('/Downloads/joy_tagger.h5'),
-	}
+tagger_models = {
+"fear": keras.models.load_model('/Downloads/fear_tagger.h5'),
+"anger": keras.models.load_model('/Downloads/anger_tagger.h5'),
+"sadness": keras.models.load_model('/Downloads/sadness_tagger.h5'),
+"joy": keras.models.load_model('/Downloads/joy_tagger.h5'),
+}
 
 def emotion_tagging(text):
 	x = texts_to_input([text])
@@ -23,8 +21,8 @@ def emotion_tagging(text):
 	for emotion in tagger_models:
 		emotion_tagger = tagger_models[emotion]
 		scores = emotion_tagger.predict(x)
-		prediction = np.argmax(scores)
-		confidence = np.max(scores)
+		prediction = numpy.argmax(scores)
+		confidence = numpy.max(scores)
 		if prediction == 1:
 			output_tags.append({'tag':emotion, "confidence":confidence})
 	return output_tags
@@ -43,5 +41,6 @@ emotion_tagging(u"Ready for that nice, breezy, calm, sunshine weather.🍂🍁 #
 
 emotion_tagging(u"@leesyatt you are a cruel, cruel man. #therewillbeblood #revenge")
 #[{'tag': 'anger', 'confidence': 1.0}]
+
 '''
 ########jessica_emotion_tagger.py########
