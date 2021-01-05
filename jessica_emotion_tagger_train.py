@@ -2,7 +2,7 @@
 from jessica_deep_emotion_sensor import *
 from jessica_emoint_data_conversion import *
 
-print('training the emotion taggers - fear')
+print('\n\ntraining the emotion tagger - fear')
 
 fear_texts, fear_tags = convert_file_to_text_and_tag_list(
 	emotion_tag = "fear",
@@ -24,7 +24,7 @@ Epoch 20/20
 3564/3564 [==============================] - 9s 2ms/sample - loss: 0.0093 - acc: 0.9938 - val_loss: 1.2104 - val_acc: 0.8182
 '''
 
-print('training the emotion taggers - anger')
+print('\n\ntraining the emotion tagger - anger')
 
 anger_texts, anger_tags = convert_file_to_text_and_tag_list(
 	emotion_tag = "anger",
@@ -45,7 +45,7 @@ Epoch 20/20
 3564/3564 [==============================] - 29s 8ms/sample - loss: 0.0111 - acc: 0.9905 - val_loss: 0.8090 - val_acc: 0.8662
 '''
 
-print('training the emotion taggers - sadness')
+print('\n\ntraining the emotion tagger - sadness')
 
 sadness_texts, sadness_tags = convert_file_to_text_and_tag_list(
 	emotion_tag = "sadness",
@@ -65,7 +65,7 @@ Epoch 20/20
 3564/3564 [==============================] - 21s 6ms/sample - loss: 0.0174 - acc: 0.9874 - val_loss: 0.6581 - val_acc: 0.9015
 '''
 
-print('training the emotion taggers - joy')
+print('\n\ntraining the emotion tagger - joy')
 
 joy_texts, joy_tags = convert_file_to_text_and_tag_list(
 	emotion_tag = "joy",
