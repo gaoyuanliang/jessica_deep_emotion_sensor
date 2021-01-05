@@ -24,6 +24,9 @@ gaoyuanliang/jessica_deep_emotion_sensor:1.0.1
 [{'tag': 'sadness', 'confidence': 0.99995244}]
 ```
 
+![alt text](WeChat%20Screenshot_20210105231138.png)
+
+
 ## problems to be solved
 
 https://stackoverflow.com/questions/46119435/keras-lstm-why-different-results-with-same-model-same-weights
