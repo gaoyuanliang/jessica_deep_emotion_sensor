@@ -23,3 +23,9 @@ gaoyuanliang/jessica_deep_emotion_sensor:1.0.1
 >>> emotion_tagging(u"All I want to do is watch some netflix but I am stuck here in class. #depressing")
 [{'tag': 'sadness', 'confidence': 0.99995244}]
 ```
+
+## problems to be solved
+
+https://stackoverflow.com/questions/46119435/keras-lstm-why-different-results-with-same-model-same-weights
+
+https://github.com/keras-team/keras/issues/4875
