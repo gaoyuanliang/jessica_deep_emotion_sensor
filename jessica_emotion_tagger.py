@@ -7,12 +7,13 @@ import random
 import tensorflow
 
 from jessica_deep_emotion_sensor import *
+from jessica_emotion_tagger_train import *
 
 tagger_models = {
-"fear": keras.models.load_model('/Downloads/fear_tagger.h5'),
-"anger": keras.models.load_model('/Downloads/anger_tagger.h5'),
-"sadness": keras.models.load_model('/Downloads/sadness_tagger.h5'),
-"joy": keras.models.load_model('/Downloads/joy_tagger.h5'),
+"fear": keras.models.load_model('fear_tagger.h5'),
+"anger": keras.models.load_model('anger_tagger.h5'),
+"sadness": keras.models.load_model('sadness_tagger.h5'),
+"joy": keras.models.load_model('joy_tagger.h5'),
 }
 
 def emotion_tagging(text):
