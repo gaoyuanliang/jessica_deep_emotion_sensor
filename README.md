@@ -32,3 +32,9 @@ gaoyuanliang/jessica_deep_emotion_sensor:1.0.1
 https://stackoverflow.com/questions/46119435/keras-lstm-why-different-results-with-same-model-same-weights
 
 https://github.com/keras-team/keras/issues/4875
+
+## other tweet data
+
+https://www.kaggle.com/mksaad/arabic-sentiment-twitter-corpus
+
+https://wti.kaust.edu.sa/solve/Arabic-Sentiment-Analysis-Challenge 
