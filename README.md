@@ -38,3 +38,5 @@ https://github.com/keras-team/keras/issues/4875
 https://www.kaggle.com/mksaad/arabic-sentiment-twitter-corpus
 
 https://wti.kaust.edu.sa/solve/Arabic-Sentiment-Analysis-Challenge 
+
+https://archive.ics.uci.edu/ml/datasets/Twitter+Data+set+for+Arabic+Sentiment+Analysis
