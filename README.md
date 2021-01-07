@@ -29,6 +29,8 @@ gaoyuanliang/jessica_deep_emotion_sensor:1.0.1
 
 ## problems to be solved
 
+trained model saved and then loaded, the model gives random outputs
+
 https://stackoverflow.com/questions/46119435/keras-lstm-why-different-results-with-same-model-same-weights
 
 https://github.com/keras-team/keras/issues/4875
